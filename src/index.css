@@ -1,0 +1,97 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+ 
+
+  
+  background-color: #0C1733;
+
+}
+
+/* Animation utilities */
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slowZoom {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+.anim-fade-up {
+  animation-name: fadeUp;
+  animation-duration: 700ms;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(.2,.9,.2,1);
+}
+
+.anim-slow-zoom {
+  animation-name: slowZoom;
+  animation-duration: 12s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.anim-delay-200 { animation-delay: 200ms; }
+.anim-delay-400 { animation-delay: 400ms; }
+.anim-delay-600 { animation-delay: 600ms; }
+
+/* reveal helper: start hidden and will animate when anim-fade-up is applied */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+/* Smooth in-page scrolling, disabled for users who prefer reduced motion */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .anim-fade-up,
+  .anim-slow-zoom,
+  .reveal {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Skip link visible when focused */
+.sr-only:focus,
+.focus\:not-sr-only:focus {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  overflow: visible !important;
+}
+
+/* Accessible focus styles */
+:focus {
+  outline: 3px solid rgba(37,99,235,0.6);
+  outline-offset: 2px;
+}
+
+/* Anchor offset for sections to account for the sticky navbar height.
+   Using section scroll-margin-top avoids adding extra global space that
+   affects layout. Adjust the value to match your navbar height. */
+section {
+  scroll-margin-top: 88px; /* adjust to navbar height */
+}
+
+.navbar-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  backdrop-filter: blur(6px);
+  background: rgba(0,0,0,0.45);
+}
+
+
